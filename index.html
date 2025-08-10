@@ -3,47 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
   <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
     :root{
       --bg:#0f1724; --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
       --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --space: clamp(14px, 2vw, 22px);
       color-scheme: dark;
     }
+
     *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#071025 0%, #081428 50%); color:#e6eef6; line-height:1.45}
-    .page{max-width:900px; margin:36px auto; padding:24px}
+    html, body { height: 100%; }
+    body{
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin:0; background:linear-gradient(180deg,#071025 0%, #081428 50%);
+      color:#e6eef6; line-height:1.5;
+      -webkit-text-size-adjust:100%;
+    }
+    .page{max-width: 1000px; margin: 0 auto; padding: clamp(16px, 2vw, 24px)}
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:22px; box-shadow:0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.04)}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius); padding:var(--space);
+      box-shadow:0 6px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.04)
+    }
 
-    .header{display:flex; gap:18px; align-items:center}
+    /* ---------- Header ---------- */
+    .header{display:grid; grid-template-columns:auto 1fr; gap:clamp(12px, 2vw, 18px); align-items:center}
+    .header-cta{display:flex; flex-direction:column; gap:8px}
+
     .avatar{
-      width:110px; height:110px; border-radius:14px; flex:0 0 110px;
-      object-fit:cover; object-position:center; box-shadow:0 4px 18px rgba(0,0,0,.35);
+      width: clamp(84px, 14vw, 110px); height: clamp(84px, 14vw, 110px);
+      border-radius:14px; object-fit:cover; object-position:center;
+      box-shadow:0 4px 18px rgba(0,0,0,.35);
       border:1px solid rgba(255,255,255,0.05);
     }
-    h1{margin:0; font-size:22px}
-    .role{margin-top:4px; color:var(--muted); font-size:14px}
+    h1{margin:0; font-size: clamp(20px, 3.2vw, 28px)}
+    .role{margin-top:6px; color:var(--muted); font-size: clamp(13px, 1.8vw, 15px)}
 
-    .meta{display:flex; gap:12px; margin-top:12px; flex-wrap:wrap}
-    .pill{background:var(--glass); padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.02)}
+    .meta{display:flex; gap:10px; margin-top:10px; flex-wrap:wrap}
+    .pill{background:var(--glass); padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.06)}
 
-    .grid{display:grid; grid-template-columns:1fr 320px; gap:18px; margin-top:18px}
-    @media (max-width:820px){.grid{grid-template-columns:1fr;}}
+    /* ---------- Layout Grid ---------- */
+    .grid{display:grid; grid-template-columns:1fr 320px; gap: clamp(14px, 2vw, 18px); margin-top:18px}
 
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      .header{grid-template-columns:auto 1fr auto}
+      .header-cta{grid-column: 1 / -1; flex-direction:row; justify-content:flex-start}
+    }
+    @media (max-width: 560px){
+      .header{grid-template-columns:auto 1fr}
+      .header-cta{grid-column: 1 / -1; flex-direction:column}
+    }
+
+    /* ---------- Sections ---------- */
     .section{margin-bottom:14px}
-    .section h3{margin:0 0 8px 0; font-size:15px}
+    .section h3{margin:0 0 8px 0; font-size: clamp(14px, 2vw, 16px)}
     p{margin:0 0 10px 0}
 
     .skills{display:flex; gap:8px; flex-wrap:wrap}
     .skill{background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:13px}
 
-    .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600}
+    .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600; word-break:break-word}
 
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,#14b8a6,#60a5fa); color:#022; font-weight:700; text-decoration:none}
-    .ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); padding:8px 12px; border-radius:8px; text-decoration:none}
+    .btn{display:inline-block; padding:12px 14px; border-radius:10px; background:linear-gradient(90deg,#14b8a6,#60a5fa); color:#022; font-weight:700; text-decoration:none; text-align:center}
+    .ghost{background:transparent; border:1px solid rgba(255,255,255,0.12); color:var(--muted); padding:10px 12px; border-radius:8px; text-decoration:none}
+    .header-cta > * { min-width: 180px }
 
-    .timeline{border-left:2px solid rgba(255,255,255,0.03); padding-left:14px}
+    .timeline{border-left:2px solid rgba(255,255,255,0.06); padding-left:14px}
     .item{margin-bottom:12px}
     .item .when{font-size:13px; color:var(--muted)}
 
@@ -54,28 +85,46 @@
     .avatar{transition:transform .25s ease}
 
     /* simple skill meter */
-    .meter{height:8px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden}
+    .meter{height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden}
     .meter > span{display:block; height:100%; border-radius:999px}
+
+    /* Light mode when toggled */
+    body.light{
+      background:#ffffff;
+      color:#022;
+    }
+    body.light .card{border-color: rgba(2,6,23,0.06)}
+    body.light .pill{color:#213547}
+    body.light .contact a{color:#0d9488}
+
+    /* Accessibility & motion */
+    @media (prefers-reduced-motion: reduce){
+      * { animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <div class="card">
       <div class="header">
-        <!-- NEW: image avatar -->
-        <img class="avatar" src="pfp2.png" alt="Mohammad AbdulSattar" />
-        <div style="flex:1">
-          <h1 id="name">Mohammad AbdulSattar </h1>
-          <div class="role" id="one-liner">I build clean, responsive web interfaces and write reliable backend code. </div>
-          <div class="meta">
-            <div class="pill" id="location">Kuwait</div>
-            <div class="pill" id="email">mohaud009@gmai.com</div>
-            <div class="pill" id="phone">+965 50378521</div>
+        <!-- Avatar -->
+        <img class="avatar" src="pfp2.png" alt="Portrait of Mohammad AbdulSattar" />
+
+        <!-- Name + Meta -->
+        <div style="flex:1; min-width:0">
+          <h1 id="name">Mohammad AbdulSattar</h1>
+          <div class="role" id="one-liner">I build clean, responsive web interfaces and write reliable backend code.</div>
+          <div class="meta" aria-label="Contact info">
+            <a class="pill" id="location" href="#" aria-label="Location">Kuwait</a>
+            <a class="pill" id="email" href="mailto:mohaud009@gmail.com" aria-label="Email">mohaud009@gmail.com</a>
+            <a class="pill" id="phone" href="tel:+96550378521" aria-label="Phone">+965 5037 8521</a>
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:8px">
-          <a href="#" class="btn" id="downloadRes">Download Résumé</a>
-          <button class="ghost" id="toggleTheme">Toggle Theme</button>
+
+        <!-- CTAs -->
+        <div class="header-cta">
+          <a href="#" class="btn" id="downloadRes" aria-label="Download résumé">Download Résumé</a>
+          <button class="ghost" id="toggleTheme" type="button" aria-pressed="false">Toggle Theme</button>
         </div>
       </div>
 
@@ -84,8 +133,8 @@
           <div class="section">
             <h3>About me</h3>
             <p id="about">
-              Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineer in my third year.
-              I enjoy building performant, accessible UIs and problem-solving across the stack.
+              Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineering student in my third year.
+              I enjoy building performant, accessible UIs and solving problems across the stack.
             </p>
           </div>
 
@@ -94,18 +143,17 @@
             <div class="skills" id="skillsList">
               <div class="skill">HTML (100%)</div>
               <div class="skill">CSS (75%)</div>
-                            <div class="skill">JS (60%)</div>
-
+              <div class="skill">JavaScript (60%)</div>
               <div class="skill">Java (85%)</div>
               <div class="skill">Responsive Design</div>
-               <div class="skill">Clean and high-level web-sites</div>
+              <div class="skill">Clean, high-level websites</div>
               <div class="skill">Git</div>
             </div>
           </div>
 
           <div class="section">
             <h3>Experience & Projects</h3>
-            <div class="timeline">
+            <div class="timeline" aria-label="Timeline of experience">
               <div class="item">
                 <strong>Portfolio Website</strong>
                 <div class="when">2025 — Personal project</div>
@@ -114,23 +162,22 @@
               <div class="item">
                 <strong>University Projects</strong>
                 <div class="when">2024–2025 — Coursework</div>
-                <div class="desc">Frontend components and performance tweaks; focus on clean HTML/CSS and Java fundamentals.</div>
+                <div class="desc">Frontend components and performance tweaks; focused on clean HTML/CSS and Java fundamentals.</div>
               </div>
             </div>
           </div>
 
           <div class="section">
             <h3>Education</h3>
-              <p><strong>Studying in Kuwait university</strong><br/>GPA & MGPA >3.67</p>
+            <p><strong>Kuwait University</strong><br/>GPA &amp; MGPA &gt; 3.67</p>
             <p><strong>Software Engineering Student</strong><br/>Graduating 2027 (in shaa’ Allah)</p>
           </div>
-
         </section>
 
         <aside>
           <div class="section contact">
             <h3>Contact</h3>
-            <div><a href="mailto:mohaud009@gmail.com">my email</a></div>
+            <div><a href="mailto:mohaud009@gmail.com">Email me</a></div>
             <div style="margin-top:8px">
               <a href="https://github.com/MohamedAbdul-Sattar" target="_blank" rel="noopener">GitHub</a>
             </div>
@@ -143,11 +190,9 @@
             </div>
             <div style="margin-bottom:8px"><small>CSS</small>
               <div class="meter" title="CSS - 75%"><span style="width:75%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
-             </div>
-            <div style="margin-bottom:8px"><small>JS</small>
-              <div class="meter" title="JS - 60%"><span style="width:60%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
-            
-            
+            </div>
+            <div style="margin-bottom:8px"><small>JavaScript</small>
+              <div class="meter" title="JavaScript - 60%"><span style="width:60%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
             </div>
             <div style="margin-bottom:8px"><small>Java</small>
               <div class="meter" title="Java - 85%"><span style="width:85%; background:linear-gradient(90deg,#60a5fa,#7c3aed)"></span></div>
@@ -157,17 +202,15 @@
           <div class="section">
             <h3>Quick facts</h3>
             <div class="pill">Open to internships</div>
-                        <div class="pill">hard working man</div>
-            
-
+            <div class="pill">Hard‑working</div>
             <div style="height:8px"></div>
             <div class="pill">Graduation: 2027</div>
           </div>
         </aside>
       </div>
 
-      <footer>
-        <div>___________________________________________________________ </div>
+      <footer aria-hidden="true" style="margin-top:16px">
+        <div style="opacity:.4;">——————————————————————————————————————</div>
       </footer>
     </div>
   </main>
@@ -176,8 +219,10 @@
     // Download a simple text résumé from the page content
     document.getElementById('downloadRes').addEventListener('click', function(e){
       e.preventDefault();
-      const name = document.getElementById('name').innerText.split('\n')[0] || 'résumé';
-      const text = `Résumé - ${name}\n\nAbout:\n${document.getElementById('about').innerText}\n\nSkills:\n${Array.from(document.querySelectorAll('#skillsList .skill')).map(s=>s.innerText).join(', ')}`;
+      const name = (document.getElementById('name').innerText.split('\n')[0] || 'resume').trim();
+      const skills = Array.from(document.querySelectorAll('#skillsList .skill')).map(s=>s.innerText).join(', ');
+      const contact = Array.from(document.querySelectorAll('.meta .pill')).map(p=>p.textContent.trim()).join(' | ');
+      const text = `Résumé - ${name}\n\nAbout:\n${document.getElementById('about').innerText}\n\nSkills:\n${skills}\n\nContact:\n${contact}`;
       const blob = new Blob([text], {type:'text/plain'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -185,18 +230,13 @@
       document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove();
     });
 
-    // Simple light/dark toggle
-    document.getElementById('toggleTheme').addEventListener('click', function(){
+    // Simple light/dark toggle (class-based)
+    const toggle = document.getElementById('toggleTheme');
+    toggle.addEventListener('click', function(){
       const body = document.body;
-      if(body.dataset.mode === 'light'){
-        body.dataset.mode = 'dark';
-        body.style.background = 'linear-gradient(180deg,#071025 0%, #081428 50%)';
-        body.style.color = '#e6eef6';
-      } else {
-        body.dataset.mode = 'light';
-        body.style.background = '#ffffff';
-        body.style.color = '#022';
-      }
+      const toLight = !body.classList.contains('light');
+      body.classList.toggle('light', toLight);
+      toggle.setAttribute('aria-pressed', String(toLight));
     });
   </script>
 </body>
