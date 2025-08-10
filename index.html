@@ -93,17 +93,34 @@
     @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
 
     /* Bottom-center theme cycler (shows NEXT theme color) */
-    .theme-cycler{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      width:54px; height:54px; border-radius:999px; border:0; cursor:pointer;
-      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
-      backdrop-filter:blur(6px);
-      transition: transform .2s ease, box-shadow .3s ease, bottom .25s ease, opacity .25s ease;
-    }
-    .theme-cycler:hover{ transform:translateX(-50%) scale(1.06); box-shadow:0 14px 36px rgba(0,0,0,.45) }
-    .theme-cycler:active{ transform:translateX(-50%) scale(.97) }
-    .theme-cycler:focus-visible{ outline:2px solid rgba(255,255,255,.7); outline-offset:3px }
-    @media (max-width: 900px){ .theme-cycler{ bottom:14px; width:50px; height:50px } }
+    /* Replace your existing .theme-cycler block with this */
+.theme-cycler{
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom)); /* respect iOS home indicator */
+  transform: translateX(-50%);
+  width: 54px; height: 54px;
+  border-radius: 999px; border: 0; cursor: pointer;
+  z-index: 9999; /* stay above content */
+  box-shadow: 0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: transform .2s ease, box-shadow .3s ease, bottom .25s ease, opacity .25s ease;
+  touch-action: manipulation;
+}
+.theme-cycler:hover{
+  transform: translateX(-50%) scale(1.06);
+  box-shadow: 0 14px 36px rgba(0,0,0,.45);
+}
+.theme-cycler:active{
+  transform: translateX(-50%) scale(.97);
+}
+@media (max-width: 900px){
+  .theme-cycler{
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    width: 50px; height: 50px;
+  }
+}
+
 
     /* Light-mode tweaks */
     body[data-theme="light"] .card{ border-color: rgba(2,6,23,0.06) }
@@ -212,7 +229,7 @@
       </div>
 
       <footer aria-hidden="true" style="margin-top:16px">
-        <div style="opacity:.4;">——————————————————————————————————————</div>
+        <div style="opacity:.4;">—————————</div>
       </footer>
     </div>
   </main>
