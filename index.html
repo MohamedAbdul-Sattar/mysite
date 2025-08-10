@@ -6,7 +6,20 @@
   <meta name="color-scheme" content="dark light" />
   <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
+    /* Smoothly animatable color variables */
+    @property --bg1 { syntax: '<color>'; inherits: false; initial-value: #071025; }
+    @property --bg2 { syntax: '<color>'; inherits: false; initial-value: #081428; }
+    @property --fg  { syntax: '<color>'; inherits: false; initial-value: #e6eef6; }
+    @property --btn1 { syntax: '<color>'; inherits: false; initial-value: #0ea5e9; }
+    @property --btn2 { syntax: '<color>'; inherits: false; initial-value: #6366f1; }
+
     :root{
+      /* animated theme vars */
+      --bg1:#071025;
+      --bg2:#081428;
+      --fg:#e6eef6;
+
+      /* existing tokens */
       --bg:#0f1724; --bg-dark-red:#3b0d0d; --bg-emerald:#022c22; --bg-royal:#1a0b2e; --bg-light:#ffffff;
       --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
       --glass: rgba(255,255,255,0.04);
@@ -14,29 +27,31 @@
       --space: clamp(14px, 2vw, 22px);
       color-scheme: dark;
     }
+
     *{box-sizing:border-box; margin:0; padding:0}
+
     body{
       font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:linear-gradient(180deg,#071025 0%, #081428 50%);
-      color:#e6eef6; line-height:1.5;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 50%);
+      color: var(--fg);
+      line-height:1.5;
       -webkit-text-size-adjust:100%;
-      transition: background .4s ease, color .4s ease;
+      transition:
+        color .45s ease,
+        background .6s ease,
+        --bg1 .6s ease,
+        --bg2 .6s ease; /* animate gradient colors smoothly */
     }
-    /* Five theme backgrounds using data-theme attribute */
-    body[data-theme="midnight"]{ background:linear-gradient(180deg,#071025 0%, #081428 50%); color:#e6eef6 }
-    body[data-theme="dark-red"]{ background:linear-gradient(180deg,var(--bg-dark-red),#1f0a0a); color:#f5e6e6 }
-    body[data-theme="emerald"]{ background:linear-gradient(180deg,var(--bg-emerald),#064e3b); color:#e9fbf5 }
-    body[data-theme="royal-purple"]{ background:linear-gradient(180deg,var(--bg-royal),#2a0f48); color:#efe7fb }
-    body[data-theme="light"]{ background:var(--bg-light); color:#022 }
 
     .page{max-width:1000px; margin:0 auto; padding:clamp(16px,2vw,24px)}
+
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:var(--radius); padding:var(--space);
       box-shadow:0 6px 30px rgba(2,6,23,0.6);
       border:1px solid rgba(255,255,255,0.04);
       transform: translateZ(0);
-      transition: background .3s ease, box-shadow .3s ease, transform .25s ease;
+      transition: background-color .45s ease, box-shadow .3s ease, transform .25s ease, border-color .45s ease;
       animation: fadeSlideIn .5s ease both;
     }
     .card:hover{ transform:translateY(-2px); box-shadow:0 10px 36px rgba(2,6,23,0.7) }
@@ -57,7 +72,7 @@
     .pill{
       background:var(--glass); padding:8px 10px; border-radius:999px;
       font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.06);
-      transition: background .2s ease, color .2s ease, transform .2s ease;
+      transition: background-color .45s ease, color .45s ease, transform .2s ease, border-color .45s ease;
     }
     .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08) }
 
@@ -73,17 +88,17 @@
     .skills{display:flex; gap:8px; flex-wrap:wrap}
     .skill{
       background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:13px;
-      transition: transform .2s ease, background .2s ease;
+      transition: transform .2s ease, background-color .45s ease, color .45s ease, border-color .45s ease;
     }
     .skill:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.06) }
 
-    .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600; word-break:break-word}
+    .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600; word-break:break-word; transition: color .45s ease}
 
-    .timeline{border-left:2px solid rgba(255,255,255,0.06); padding-left:14px}
+    .timeline{border-left:2px solid rgba(255,255,255,0.06); padding-left:14px; transition: border-color .45s ease}
     .item{margin-bottom:12px}
     .item .when{font-size:13px; color:var(--muted)}
 
-    .meter{height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden}
+    .meter{height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; transition: background-color .45s ease}
     .meter > span{display:block; height:100%; border-radius:999px}
 
     footer{margin-top:18px; color:var(--muted); font-size:13px}
@@ -93,36 +108,41 @@
     @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
 
     /* Bottom-center theme cycler (shows NEXT theme color) */
-    /* Replace your existing .theme-cycler block with this */
-.theme-cycler{
-  position: fixed;
-  left: 50%;
-  bottom: calc(18px + env(safe-area-inset-bottom)); /* respect iOS home indicator */
-  transform: translateX(-50%);
-  width: 54px; height: 54px;
-  border-radius: 999px; border: 0; cursor: pointer;
-  z-index: 9999; /* stay above content */
-  box-shadow: 0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  transition: transform .2s ease, box-shadow .3s ease, bottom .25s ease, opacity .25s ease;
-  touch-action: manipulation;
-}
-.theme-cycler:hover{
-  transform: translateX(-50%) scale(1.06);
-  box-shadow: 0 14px 36px rgba(0,0,0,.45);
-}
-.theme-cycler:active{
-  transform: translateX(-50%) scale(.97);
-}
-@media (max-width: 900px){
-  .theme-cycler{
-    bottom: calc(14px + env(safe-area-inset-bottom));
-    width: 50px; height: 50px;
-  }
-}
+    .theme-cycler{
+      position: fixed;
+      left: 50%;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      width: 54px; height: 54px;
+      border-radius: 999px; border: 0; cursor: pointer;
+      z-index: 9999;
+      background: linear-gradient(180deg, var(--btn1), var(--btn2));
+      box-shadow: 0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      transition:
+        transform .2s ease,
+        box-shadow .3s ease,
+        bottom .25s ease,
+        opacity .25s ease,
+        --btn1 .6s ease,
+        --btn2 .6s ease;
+      touch-action: manipulation;
+    }
+    .theme-cycler:hover{
+      transform: translateX(-50%) scale(1.06);
+      box-shadow: 0 14px 36px rgba(0,0,0,.45);
+    }
+    .theme-cycler:active{
+      transform: translateX(-50%) scale(.97);
+    }
+    @media (max-width: 900px){
+      .theme-cycler{
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        width: 50px; height: 50px;
+      }
+    }
 
-
-    /* Light-mode tweaks */
+    /* Light-mode tweaks (keep these) */
     body[data-theme="light"] .card{ border-color: rgba(2,6,23,0.06) }
     body[data-theme="light"] .pill{ color:#213547 }
     body[data-theme="light"] .contact a{ color:#0d9488 }
@@ -162,7 +182,7 @@
               <div class="skill">JavaScript (60%)</div>
               <div class="skill">Java (85%)</div>
               <div class="skill">Responsive Design</div>
-              <div class="skill">Clean and high‑level websites</div>
+              <div class="skill">Clean and high-level websites</div>
               <div class="skill">Git</div>
             </div>
           </div>
@@ -188,7 +208,6 @@
             <p><strong>Studying at Kuwait University</strong><br/>GPA &amp; MGPA &gt; 3.67</p>
             <p><strong>Software Engineering Student</strong><br/>Graduating 2027 (in shaa’ Allah)</p>
           </div>
-
         </section>
 
         <aside>
@@ -219,9 +238,8 @@
           <div class="section">
             <h3>Quick facts</h3>
             <div class="pill">Open to internships</div>
-                        <div style="height:8px"></div>
-
-            <div class="pill">Hard‑working</div>
+            <div style="height:8px"></div>
+            <div class="pill">Hard-working</div>
             <div style="height:8px"></div>
             <div class="pill">Graduation: 2027</div>
           </div>
@@ -229,7 +247,7 @@
       </div>
 
       <footer aria-hidden="true" style="margin-top:16px">
-        <div style="opacity:.4;">—————————</div>
+        <div style="opacity:.4;"></div>
       </footer>
     </div>
   </main>
@@ -238,39 +256,47 @@
   <button class="theme-cycler" id="themeCycler" type="button" aria-pressed="false" aria-label="Switch theme"></button>
 
   <script>
-    // Five themes and their button preview gradients (for the NEXT theme)
+    // Five themes with animatable colors
     const THEMES = [
-      { key:'midnight',     btn:['#0ea5e9','#6366f1'] },
-      { key:'dark-red',     btn:['#991b1b','#ef4444'] },
-      { key:'emerald',      btn:['#059669','#10b981'] },
-      { key:'royal-purple', btn:['#7c3aed','#a78bfa'] },
-      { key:'light',        btn:['#111827','#6b7280'] }
+      { key:'midnight',     bg1:'#071025', bg2:'#081428', fg:'#e6eef6', btn:['#0ea5e9','#6366f1'] },
+      { key:'dark-red',     bg1:'#3b0d0d', bg2:'#1f0a0a', fg:'#f5e6e6', btn:['#991b1b','#ef4444'] },
+      { key:'emerald',      bg1:'#022c22', bg2:'#064e3b', fg:'#e9fbf5', btn:['#059669','#10b981'] },
+      { key:'royal-purple', bg1:'#1a0b2e', bg2:'#2a0f48', fg:'#efe7fb', btn:['#7c3aed','#a78bfa'] },
+      { key:'light',        bg1:'#ffffff', bg2:'#ffffff', fg:'#022',    btn:['#111827','#6b7280'] }
     ];
 
     const body = document.body;
-    const btn = document.getElementById('themeCycler');
+    const btn  = document.getElementById('themeCycler');
 
-    // Restore saved theme or keep current data-theme
-    const saved = localStorage.getItem('theme-key');
-    if(saved){ body.setAttribute('data-theme', saved); }
+    function applyTheme(key){
+      const t = THEMES.find(x => x.key === key) || THEMES[0];
+      body.setAttribute('data-theme', t.key);     // keep data-theme for light mode tweaks
+      body.style.setProperty('--bg1', t.bg1);     // animate background start
+      body.style.setProperty('--bg2', t.bg2);     // animate background end
+      body.style.setProperty('--fg',  t.fg);      // animate text color
+      localStorage.setItem('theme-key', t.key);
+    }
 
     function setButtonToNext(){
-      const cur = body.getAttribute('data-theme') || 'midnight';
-      const idx = THEMES.findIndex(t=>t.key===cur);
-      const next = THEMES[(idx+1)%THEMES.length];
-      btn.style.background = `linear-gradient(180deg, ${next.btn[0]}, ${next.btn[1]})`;
+      const cur  = body.getAttribute('data-theme') || 'midnight';
+      const idx  = THEMES.findIndex(t => t.key === cur);
+      const next = THEMES[(idx + 1) % THEMES.length];
+      btn.style.setProperty('--btn1', next.btn[0]);  // animate preview 1
+      btn.style.setProperty('--btn2', next.btn[1]);  // animate preview 2
       btn.title = `Switch to ${next.key.replace('-', ' ')}`;
       btn.setAttribute('aria-label', btn.title);
     }
 
+    // Init from saved theme or current attribute
+    const saved = localStorage.getItem('theme-key') || body.getAttribute('data-theme') || 'midnight';
+    applyTheme(saved);
     setButtonToNext();
 
-    btn.addEventListener('click', ()=>{
-      const cur = body.getAttribute('data-theme') || 'midnight';
-      const idx = THEMES.findIndex(t=>t.key===cur);
-      const next = THEMES[(idx+1)%THEMES.length];
-      body.setAttribute('data-theme', next.key);
-      localStorage.setItem('theme-key', next.key);
+    btn.addEventListener('click', () => {
+      const cur  = body.getAttribute('data-theme') || 'midnight';
+      const idx  = THEMES.findIndex(t => t.key === cur);
+      const next = THEMES[(idx + 1) % THEMES.length];
+      applyTheme(next.key);
       setButtonToNext();
     });
   </script>
