@@ -7,124 +7,109 @@
   <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
     :root{
-      --bg:#0f1724; --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
+      --bg:#0f1724; --bg-light:#ffffff; --bg-dark-red:#3b0d0d;
+      --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
       --glass: rgba(255,255,255,0.04);
       --radius: 14px;
       --space: clamp(14px, 2vw, 22px);
       color-scheme: dark;
     }
-
-    *{box-sizing:border-box}
-    html, body { height: 100%; }
+    *{box-sizing:border-box; margin:0; padding:0}
     body{
       font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      margin:0; background:linear-gradient(180deg,#071025 0%, #081428 50%);
+      background:linear-gradient(180deg,#071025 0%, #081428 50%);
       color:#e6eef6; line-height:1.5;
       -webkit-text-size-adjust:100%;
+      transition: background .4s ease, color .4s ease;
     }
-    .page{max-width: 1000px; margin: 0 auto; padding: clamp(16px, 2vw, 24px)}
+    body.light{ background:#ffffff; color:#022; }
+    body.dark-red{ background:var(--bg-dark-red); color:#f5e6e6; }
 
+    .page{max-width:1000px; margin:0 auto; padding:clamp(16px,2vw,24px)}
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:var(--radius); padding:var(--space);
       box-shadow:0 6px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.04)
+      border:1px solid rgba(255,255,255,0.04);
+      transform: translateZ(0);
+      transition: background .3s ease, box-shadow .3s ease, transform .25s ease;
+      animation: fadeSlideIn .5s ease both;
     }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 10px 36px rgba(2,6,23,0.7) }
 
-    /* ---------- Header ---------- */
     .header{display:grid; grid-template-columns:auto 1fr; gap:clamp(12px, 2vw, 18px); align-items:center}
-    .header-cta{display:flex; flex-direction:column; gap:8px}
-
     .avatar{
-      width: clamp(84px, 14vw, 110px); height: clamp(84px, 14vw, 110px);
-      border-radius:14px; object-fit:cover; object-position:center;
+      width:clamp(84px,14vw,110px); height:clamp(84px,14vw,110px);
+      border-radius:50%; object-fit:cover; object-position:center;
       box-shadow:0 4px 18px rgba(0,0,0,.35);
       border:1px solid rgba(255,255,255,0.05);
+      transition: transform .25s ease, box-shadow .3s ease;
     }
-    h1{margin:0; font-size: clamp(20px, 3.2vw, 28px)}
-    .role{margin-top:6px; color:var(--muted); font-size: clamp(13px, 1.8vw, 15px)}
+    .header:hover .avatar{ transform: translateY(-2px) }
 
+    h1{font-size: clamp(20px, 3.2vw, 28px)}
+    .role{margin-top:6px; color:var(--muted); font-size:clamp(13px,1.8vw,15px)}
     .meta{display:flex; gap:10px; margin-top:10px; flex-wrap:wrap}
-    .pill{background:var(--glass); padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.06)}
-
-    /* ---------- Layout Grid ---------- */
-    .grid{display:grid; grid-template-columns:1fr 320px; gap: clamp(14px, 2vw, 18px); margin-top:18px}
-
-    @media (max-width: 900px){
-      .grid{grid-template-columns:1fr}
-      .header{grid-template-columns:auto 1fr auto}
-      .header-cta{grid-column: 1 / -1; flex-direction:row; justify-content:flex-start}
+    .pill{
+      background:var(--glass); padding:8px 10px; border-radius:999px;
+      font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.06);
+      transition: background .2s ease, color .2s ease, transform .2s ease;
     }
-    @media (max-width: 560px){
-      .header{grid-template-columns:auto 1fr}
-      .header-cta{grid-column: 1 / -1; flex-direction:column}
-    }
+    .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08) }
 
-    /* ---------- Sections ---------- */
-    .section{margin-bottom:14px}
-    .section h3{margin:0 0 8px 0; font-size: clamp(14px, 2vw, 16px)}
+    .grid{display:grid; grid-template-columns:1fr 320px; gap:clamp(14px,2vw,18px); margin-top:18px}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+
+    .section{margin-bottom:14px; animation: fadeSlideIn .5s ease both}
+    .section h3{margin:0 0 8px 0; font-size:clamp(14px,2vw,16px)}
     p{margin:0 0 10px 0}
 
     .skills{display:flex; gap:8px; flex-wrap:wrap}
-    .skill{background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:13px}
+    .skill{
+      background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:13px;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .skill:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.06) }
 
     .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600; word-break:break-word}
 
-    .btn{display:inline-block; padding:12px 14px; border-radius:10px; background:linear-gradient(90deg,#14b8a6,#60a5fa); color:#022; font-weight:700; text-decoration:none; text-align:center}
-    .ghost{background:transparent; border:1px solid rgba(255,255,255,0.12); color:var(--muted); padding:10px 12px; border-radius:8px; text-decoration:none}
-    .header-cta > * { min-width: 180px }
-
-    .timeline{border-left:2px solid rgba(255,255,255,0.06); padding-left:14px}
-    .item{margin-bottom:12px}
-    .item .when{font-size:13px; color:var(--muted)}
-
-    footer{margin-top:18px; color:var(--muted); font-size:13px}
-
-    /* small animations */
-    .card:hover .avatar{transform:translateY(-2px)}
-    .avatar{transition:transform .25s ease}
-
-    /* simple skill meter */
     .meter{height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden}
     .meter > span{display:block; height:100%; border-radius:999px}
 
-    /* Light mode when toggled */
-    body.light{
-      background:#ffffff;
-      color:#022;
-    }
-    body.light .card{border-color: rgba(2,6,23,0.06)}
-    body.light .pill{color:#213547}
-    body.light .contact a{color:#0d9488}
+    footer{margin-top:18px; color:var(--muted); font-size:13px}
 
-    /* Accessibility & motion */
-    @media (prefers-reduced-motion: reduce){
-      * { animation: none !important; transition: none !important; }
+    @keyframes fadeSlideIn{ from{opacity:0; transform: translateY(8px)} to{opacity:1; transform:none} }
+    @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
+
+    /* Floating side theme toggle (dark red) */
+    .theme-switch{
+      position:fixed; right:18px; top:50%; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:999px; border:0; cursor:pointer;
+      background:linear-gradient(180deg,#7f1d1d,#991b1b);
+      box-shadow:0 10px 30px rgba(153,27,27,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(6px);
+      transition: transform .25s ease, box-shadow .3s ease, right .3s ease, opacity .3s ease;
     }
+    .theme-switch:hover{ transform:translateY(-50%) translateX(-2px); box-shadow:0 14px 38px rgba(153,27,27,.45) }
+    .theme-switch:focus-visible{ outline:2px solid #ef4444; outline-offset:3px }
+    body.light .theme-switch{ background:linear-gradient(180deg,#991b1b,#ef4444) }
+    body.dark-red .theme-switch{ background:linear-gradient(180deg,#7f1d1d,#991b1b) }
+    @media (max-width:900px){ .theme-switch{ right:12px; width:44px; height:44px } }
   </style>
 </head>
 <body>
   <main class="page">
     <div class="card">
       <div class="header">
-        <!-- Avatar -->
         <img class="avatar" src="pfp2.png" alt="Portrait of Mohammad AbdulSattar" />
-
-        <!-- Name + Meta -->
         <div style="flex:1; min-width:0">
           <h1 id="name">Mohammad AbdulSattar</h1>
-          <div class="role" id="one-liner">I build clean, responsive web interfaces and write reliable backend code.</div>
-          <div class="meta" aria-label="Contact info">
-            <a class="pill" id="location" href="#" aria-label="Location">Kuwait</a>
-            <a class="pill" id="email" href="mailto:mohaud009@gmail.com" aria-label="Email">mohaud009@gmail.com</a>
-            <a class="pill" id="phone" href="tel:+96550378521" aria-label="Phone">+965 5037 8521</a>
+          <div class="role">I build clean, responsive web interfaces and write reliable backend code.</div>
+          <div class="meta">
+            <a class="pill" href="#" aria-label="Location">Kuwait</a>
+            <a class="pill" href="mailto:mohaud009@gmail.com" aria-label="Email">mohaud009@gmail.com</a>
+            <a class="pill" href="tel:+96550378521" aria-label="Phone">+965 5037 8521</a>
           </div>
-        </div>
-
-        <!-- CTAs -->
-        <div class="header-cta">
-          <a href="#" class="btn" id="downloadRes" aria-label="Download résumé">Download Résumé</a>
-          <button class="ghost" id="toggleTheme" type="button" aria-pressed="false">Toggle Theme</button>
         </div>
       </div>
 
@@ -132,10 +117,8 @@
         <section>
           <div class="section">
             <h3>About me</h3>
-            <p id="about">
-              Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineering student in my third year.
-              I enjoy building performant, accessible UIs and solving problems across the stack.
-            </p>
+            <p>Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineering student in my third year.
+              I enjoy building performant, accessible UIs and solving problems across the stack.</p>
           </div>
 
           <div class="section">
@@ -153,15 +136,15 @@
 
           <div class="section">
             <h3>Experience & Projects</h3>
-            <div class="timeline" aria-label="Timeline of experience">
-              <div class="item">
+            <div class="timeline" aria-label="Timeline of experience" style="border-left:2px solid rgba(255,255,255,0.06); padding-left:14px">
+              <div class="item" style="margin-bottom:12px">
                 <strong>Portfolio Website</strong>
-                <div class="when">2025 — Personal project</div>
+                <div class="when" style="font-size:13px; color:var(--muted)">2025 — Personal project</div>
                 <div class="desc">Built a responsive portfolio to showcase projects and CV.</div>
               </div>
               <div class="item">
                 <strong>University Projects</strong>
-                <div class="when">2024–2025 — Coursework</div>
+                <div class="when" style="font-size:13px; color:var(--muted)">2024–2025 — Coursework</div>
                 <div class="desc">Frontend components and performance tweaks; focused on clean HTML/CSS and Java fundamentals.</div>
               </div>
             </div>
@@ -202,41 +185,35 @@
           <div class="section">
             <h3>Quick facts</h3>
             <div class="pill">Open to internships</div>
-            <div class="pill">Hard‑working</div>
+            <div class="pill">Hard-working</div>
             <div style="height:8px"></div>
             <div class="pill">Graduation: 2027</div>
           </div>
         </aside>
       </div>
 
-      <footer aria-hidden="true" style="margin-top:16px">
-        <div style="opacity:.4;">——————————————————————————————————————</div>
-      </footer>
+      <footer><div>—————————————————————</div></footer>
     </div>
   </main>
 
-  <script>
-    // Download a simple text résumé from the page content
-    document.getElementById('downloadRes').addEventListener('click', function(e){
-      e.preventDefault();
-      const name = (document.getElementById('name').innerText.split('\n')[0] || 'resume').trim();
-      const skills = Array.from(document.querySelectorAll('#skillsList .skill')).map(s=>s.innerText).join(', ');
-      const contact = Array.from(document.querySelectorAll('.meta .pill')).map(p=>p.textContent.trim()).join(' | ');
-      const text = `Résumé - ${name}\n\nAbout:\n${document.getElementById('about').innerText}\n\nSkills:\n${skills}\n\nContact:\n${contact}`;
-      const blob = new Blob([text], {type:'text/plain'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = (name.replace(/\s+/g,'_') || 'resume') + '.txt';
-      document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove();
-    });
+  <!-- Floating side theme toggle button -->
+  <button class="theme-switch" id="toggleTheme" type="button" aria-pressed="false" aria-label="Toggle theme"></button>
 
-    // Simple light/dark toggle (class-based)
-    const toggle = document.getElementById('toggleTheme');
-    toggle.addEventListener('click', function(){
+  <script>
+    // Theme toggle cycling: default -> dark-red -> light -> default
+    document.getElementById('toggleTheme').addEventListener('click', function(){
       const body = document.body;
-      const toLight = !body.classList.contains('light');
-      body.classList.toggle('light', toLight);
-      toggle.setAttribute('aria-pressed', String(toLight));
+      if(body.classList.contains('dark-red')){
+        body.classList.remove('dark-red');
+        body.classList.add('light');
+        this.setAttribute('aria-pressed','true');
+      } else if(body.classList.contains('light')){
+        body.classList.remove('light');
+        this.setAttribute('aria-pressed','false');
+      } else {
+        body.classList.add('dark-red');
+        this.setAttribute('aria-pressed','true');
+      }
     });
   </script>
 </body>
