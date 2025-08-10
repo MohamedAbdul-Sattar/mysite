@@ -3,98 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
   <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
     :root{
-      --bg:#0f1724; --bg-light:#ffffff; --bg-dark-red:#3b0d0d;
-      --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
-      --glass: rgba(255,255,255,0.04);
-      --radius: 14px;
-      --space: clamp(14px, 2vw, 22px);
-      color-scheme: dark;
+      --color1:#7f1d1d;
+      --color2:#1d4d7f;
+      --color3:#1d7f4d;
+      --color4:#7f6b1d;
+      --color5:#5a1d7f;
     }
-    *{box-sizing:border-box; margin:0; padding:0}
     body{
-      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:linear-gradient(180deg,#071025 0%, #081428 50%);
-      color:#e6eef6; line-height:1.5;
-      -webkit-text-size-adjust:100%;
-      transition: background .4s ease, color .4s ease;
+      margin:0; font-family:Inter,system-ui,sans-serif; line-height:1.5;
+      background:var(--color1); color:#fff; transition: background 0.5s ease, color 0.5s ease;
     }
-    body.light{ background:#ffffff; color:#022; }
-    body.dark-red{ background:var(--bg-dark-red); color:#f5e6e6; }
-
-    .page{max-width:1000px; margin:0 auto; padding:clamp(16px,2vw,24px)}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius); padding:var(--space);
-      box-shadow:0 6px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.04);
-      transform: translateZ(0);
-      transition: background .3s ease, box-shadow .3s ease, transform .25s ease;
-      animation: fadeSlideIn .5s ease both;
-    }
-    .card:hover{ transform:translateY(-2px); box-shadow:0 10px 36px rgba(2,6,23,0.7) }
-
-    .header{display:grid; grid-template-columns:auto 1fr; gap:clamp(12px, 2vw, 18px); align-items:center}
-    .avatar{
-      width:clamp(84px,14vw,110px); height:clamp(84px,14vw,110px);
-      border-radius:50%; object-fit:cover; object-position:center;
-      box-shadow:0 4px 18px rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,0.05);
-      transition: transform .25s ease, box-shadow .3s ease;
-    }
-    .header:hover .avatar{ transform: translateY(-2px) }
-
-    h1{font-size: clamp(20px, 3.2vw, 28px)}
-    .role{margin-top:6px; color:var(--muted); font-size:clamp(13px,1.8vw,15px)}
-    .meta{display:flex; gap:10px; margin-top:10px; flex-wrap:wrap}
-    .pill{
-      background:var(--glass); padding:8px 10px; border-radius:999px;
-      font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.06);
-      transition: background .2s ease, color .2s ease, transform .2s ease;
-    }
-    .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08) }
-
-    .grid{display:grid; grid-template-columns:1fr 320px; gap:clamp(14px,2vw,18px); margin-top:18px}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
-
-    .section{margin-bottom:14px; animation: fadeSlideIn .5s ease both}
-    .section h3{margin:0 0 8px 0; font-size:clamp(14px,2vw,16px)}
-    p{margin:0 0 10px 0}
-
-    .skills{display:flex; gap:8px; flex-wrap:wrap}
-    .skill{
-      background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:13px;
-      transition: transform .2s ease, background .2s ease;
-    }
-    .skill:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.06) }
-
-    .contact a{display:inline-block; margin-right:10px; text-decoration:none; color:var(--accent); font-weight:600; word-break:break-word}
-
-    .meter{height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden}
-    .meter > span{display:block; height:100%; border-radius:999px}
-
-    footer{margin-top:18px; color:var(--muted); font-size:13px}
-
-    @keyframes fadeSlideIn{ from{opacity:0; transform: translateY(8px)} to{opacity:1; transform:none} }
-    @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
-
-    /* Floating side theme toggle (dark red) */
-    .theme-switch{
-      position:fixed; right:18px; top:50%; transform:translateY(-50%);
-      width:48px; height:48px; border-radius:999px; border:0; cursor:pointer;
-      background:linear-gradient(180deg,#7f1d1d,#991b1b);
-      box-shadow:0 10px 30px rgba(153,27,27,.35), inset 0 1px 0 rgba(255,255,255,.08);
+    .page{max-width:1000px; margin:auto; padding:20px}
+    .card{background:rgba(255,255,255,0.05); padding:20px; border-radius:14px; transition:transform 0.3s ease, box-shadow 0.3s ease}
+    .card:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+    .header{display:flex; gap:16px; align-items:center; flex-wrap:wrap}
+    .avatar{width:100px; height:100px; border-radius:50%; object-fit:cover; transition:transform 0.3s ease}
+    .avatar:hover{transform:scale(1.05)}
+    h1{margin:0}
+    .role{opacity:0.85}
+    .toggle-container{position:absolute; top:20px; left:20px;}
+    #toggleTheme{border:none; border-radius:50%; width:48px; height:48px; cursor:pointer; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+    #toggleTheme:hover{transform:scale(1.1); box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+      /* Theme cycler button (bottom-center), shows the NEXT theme color */
+    .theme-cycler{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      width:54px; height:54px; border-radius:999px; border:0; cursor:pointer;
+      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
       backdrop-filter:blur(6px);
-      transition: transform .25s ease, box-shadow .3s ease, right .3s ease, opacity .3s ease;
+      transition: transform .2s ease, box-shadow .3s ease, bottom .25s ease, opacity .25s ease;
     }
-    .theme-switch:hover{ transform:translateY(-50%) translateX(-2px); box-shadow:0 14px 38px rgba(153,27,27,.45) }
-    .theme-switch:focus-visible{ outline:2px solid #ef4444; outline-offset:3px }
-    body.light .theme-switch{ background:linear-gradient(180deg,#991b1b,#ef4444) }
-    body.dark-red .theme-switch{ background:linear-gradient(180deg,#7f1d1d,#991b1b) }
-    @media (max-width:900px){ .theme-switch{ right:12px; width:44px; height:44px } }
+    .theme-cycler:hover{ transform:translateX(-50%) scale(1.06); box-shadow:0 14px 36px rgba(0,0,0,.45) }
+    .theme-cycler:active{ transform:translateX(-50%) scale(.97) }
+    .theme-cycler:focus-visible{ outline:2px solid rgba(255,255,255,.7); outline-offset:3px }
+    @media (max-width: 900px){ .theme-cycler{ bottom:14px; width:50px; height:50px } }
+
+    /* Five theme backgrounds using data-theme attribute */
+    body[data-theme="midnight"]{
+      background:linear-gradient(180deg,#071025 0%, #081428 50%);
+      color:#e6eef6;
+    }
+    body[data-theme="dark-red"]{ background:linear-gradient(180deg,#3b0d0d,#1f0a0a); color:#f5e6e6 }
+    body[data-theme="emerald"]{ background:linear-gradient(180deg,#022c22,#064e3b); color:#e9fbf5 }
+    body[data-theme="royal-purple"]{ background:linear-gradient(180deg,#1a0b2e,#2a0f48); color:#efe7fb }
+    body[data-theme="light"]{ background:#ffffff; color:#022 }
+
+    /* Subtle card/pill adjustments per light mode for contrast */
+    body[data-theme="light"] .card{ border-color: rgba(2,6,23,0.06) }
+    body[data-theme="light"] .pill{ color:#213547 }
+    body[data-theme="light"] .contact a{ color:#0d9488 }
   </style>
 </head>
 <body>
@@ -102,119 +61,52 @@
     <div class="card">
       <div class="header">
         <img class="avatar" src="pfp2.png" alt="Portrait of Mohammad AbdulSattar" />
-        <div style="flex:1; min-width:0">
-          <h1 id="name">Mohammad AbdulSattar</h1>
+        <div>
+          <h1>Mohammad AbdulSattar</h1>
           <div class="role">I build clean, responsive web interfaces and write reliable backend code.</div>
-          <div class="meta">
-            <a class="pill" href="#" aria-label="Location">Kuwait</a>
-            <a class="pill" href="mailto:mohaud009@gmail.com" aria-label="Email">mohaud009@gmail.com</a>
-            <a class="pill" href="tel:+96550378521" aria-label="Phone">+965 5037 8521</a>
-          </div>
         </div>
       </div>
-
-      <div class="grid">
-        <section>
-          <div class="section">
-            <h3>About me</h3>
-            <p>Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineering student in my third year.
-              I enjoy building performant, accessible UIs and solving problems across the stack.</p>
-          </div>
-
-          <div class="section">
-            <h3>Skills</h3>
-            <div class="skills" id="skillsList">
-              <div class="skill">HTML (100%)</div>
-              <div class="skill">CSS (75%)</div>
-              <div class="skill">JavaScript (60%)</div>
-              <div class="skill">Java (85%)</div>
-              <div class="skill">Responsive Design</div>
-              <div class="skill">Clean, high-level websites</div>
-              <div class="skill">Git</div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Experience & Projects</h3>
-            <div class="timeline" aria-label="Timeline of experience" style="border-left:2px solid rgba(255,255,255,0.06); padding-left:14px">
-              <div class="item" style="margin-bottom:12px">
-                <strong>Portfolio Website</strong>
-                <div class="when" style="font-size:13px; color:var(--muted)">2025 — Personal project</div>
-                <div class="desc">Built a responsive portfolio to showcase projects and CV.</div>
-              </div>
-              <div class="item">
-                <strong>University Projects</strong>
-                <div class="when" style="font-size:13px; color:var(--muted)">2024–2025 — Coursework</div>
-                <div class="desc">Frontend components and performance tweaks; focused on clean HTML/CSS and Java fundamentals.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Education</h3>
-            <p><strong>Kuwait University</strong><br/>GPA &amp; MGPA &gt; 3.67</p>
-            <p><strong>Software Engineering Student</strong><br/>Graduating 2027 (in shaa’ Allah)</p>
-          </div>
-        </section>
-
-        <aside>
-          <div class="section contact">
-            <h3>Contact</h3>
-            <div><a href="mailto:mohaud009@gmail.com">Email me</a></div>
-            <div style="margin-top:8px">
-              <a href="https://github.com/MohamedAbdul-Sattar" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Skill levels</h3>
-            <div style="margin-bottom:8px"><small>HTML</small>
-              <div class="meter" title="HTML - 100%"><span style="width:100%; background:linear-gradient(90deg,#10b981,#60a5fa)"></span></div>
-            </div>
-            <div style="margin-bottom:8px"><small>CSS</small>
-              <div class="meter" title="CSS - 75%"><span style="width:75%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
-            </div>
-            <div style="margin-bottom:8px"><small>JavaScript</small>
-              <div class="meter" title="JavaScript - 60%"><span style="width:60%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
-            </div>
-            <div style="margin-bottom:8px"><small>Java</small>
-              <div class="meter" title="Java - 85%"><span style="width:85%; background:linear-gradient(90deg,#60a5fa,#7c3aed)"></span></div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Quick facts</h3>
-            <div class="pill">Open to internships</div>
-            <div class="pill">Hard-working</div>
-            <div style="height:8px"></div>
-            <div class="pill">Graduation: 2027</div>
-          </div>
-        </aside>
-      </div>
-
-      <footer><div>—————————————————————</div></footer>
     </div>
   </main>
-
-  <!-- Floating side theme toggle button -->
-  <button class="theme-switch" id="toggleTheme" type="button" aria-pressed="false" aria-label="Toggle theme"></button>
-
   <script>
-    // Theme toggle cycling: default -> dark-red -> light -> default
-    document.getElementById('toggleTheme').addEventListener('click', function(){
-      const body = document.body;
-      if(body.classList.contains('dark-red')){
-        body.classList.remove('dark-red');
-        body.classList.add('light');
-        this.setAttribute('aria-pressed','true');
-      } else if(body.classList.contains('light')){
-        body.classList.remove('light');
-        this.setAttribute('aria-pressed','false');
-      } else {
-        body.classList.add('dark-red');
-        this.setAttribute('aria-pressed','true');
-      }
+  (function(){
+    // Define five themes and their preview (button) gradients
+    const themes = [
+      { key:'midnight',     btn:['#0ea5e9','#6366f1'] },
+      { key:'dark-red',     btn:['#991b1b','#ef4444'] },
+      { key:'emerald',      btn:['#059669','#10b981'] },
+      { key:'royal-purple', btn:['#7c3aed','#a78bfa'] },
+      { key:'light',        btn:['#111827','#6b7280'] } // neutral preview for light
+    ];
+
+    // Create the cycler button
+    const btn = document.createElement('button');
+    btn.className = 'theme-cycler';
+    btn.id = 'themeCycler';
+    document.body.appendChild(btn);
+
+    // Restore last theme or default
+    const current = localStorage.getItem('theme-key') || 'midnight';
+    document.body.setAttribute('data-theme', current);
+
+    function setButtonToNext(){
+      const idx = themes.findIndex(t => t.key === document.body.getAttribute('data-theme'));
+      const next = themes[(idx + 1) % themes.length];
+      btn.style.background = `linear-gradient(180deg, ${next.btn[0]}, ${next.btn[1]})`;
+      btn.title = `Switch to ${next.key.replace('-', ' ')}`;
+      btn.setAttribute('aria-label', btn.title);
+    }
+
+    setButtonToNext();
+
+    btn.addEventListener('click', () => {
+      const idx = themes.findIndex(t => t.key === document.body.getAttribute('data-theme'));
+      const next = themes[(idx + 1) % themes.length];
+      document.body.setAttribute('data-theme', next.key);
+      localStorage.setItem('theme-key', next.key);
+      setButtonToNext();
     });
-  </script>
+  })();
+</script>
 </body>
 </html>
