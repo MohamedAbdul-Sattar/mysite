@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Self Introduction — Your Name</title>
+  <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
     :root{
       --bg:#0f1724; --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
@@ -17,7 +17,11 @@
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:22px; box-shadow:0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.04)}
 
     .header{display:flex; gap:18px; align-items:center}
-    .avatar{width:110px; height:110px; border-radius:14px; flex:0 0 110px; background:linear-gradient(135deg,#0ea5b6,#6366f1); display:grid; place-items:center; font-weight:700; font-size:36px; color:rgba(255,255,255,0.95)}
+    .avatar{
+      width:110px; height:110px; border-radius:14px; flex:0 0 110px;
+      object-fit:cover; object-position:center; box-shadow:0 4px 18px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,0.05);
+    }
     h1{margin:0; font-size:22px}
     .role{margin-top:4px; color:var(--muted); font-size:14px}
 
@@ -46,34 +50,31 @@
     footer{margin-top:18px; color:var(--muted); font-size:13px}
 
     /* small animations */
-    .avatar{transition:transform .35s ease}
-    .card:hover .avatar{transform:translateY(-6px) rotate(-2deg)}
+    .card:hover .avatar{transform:translateY(-2px)}
+    .avatar{transition:transform .25s ease}
 
     /* simple skill meter */
     .meter{height:8px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden}
     .meter > span{display:block; height:100%; border-radius:999px}
-
-    /* download icon */
-    .icon{display:inline-block; vertical-align:middle; width:14px; height:14px; margin-right:8px}
-
   </style>
 </head>
 <body>
   <main class="page">
     <div class="card">
       <div class="header">
-        <div class="avatar" id="avatar">YN</div>
+        <!-- NEW: image avatar -->
+        <img class="avatar" src="pfp.jpg" alt="Mohammad AbdulSattar" />
         <div style="flex:1">
-          <h1 id="name">Your Name <span style="color:var(--muted); font-weight:600; font-size:14px"> — Student / Frontend Developer</span></h1>
-          <div class="role" id="one-liner">I build clean, responsive web interfaces using HTML, CSS and JavaScript.</div>
+          <h1 id="name">Mohammad AbdulSattar <span style="color:var(--muted); font-weight:600; font-size:14px"> — Software Engineer (3rd year)</span></h1>
+          <div class="role" id="one-liner">I build clean, responsive web interfaces and write reliable backend code. Graduation in 2027, in shaa’ Allah.</div>
           <div class="meta">
-            <div class="pill" id="location">Cairo, Egypt</div>
-            <div class="pill" id="email">you@example.com</div>
-            <div class="pill" id="phone">+20 100 000 0000</div>
+            <div class="pill" id="location">—</div>
+            <div class="pill" id="email">your.email@domain.com</div>
+            <div class="pill" id="phone">+— — — —</div>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:8px">
-          <a href="#" class="btn" id="downloadRes"> <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12" stroke="#022" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="#022" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3" stroke="#022" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Download Résumé</a>
+          <a href="#" class="btn" id="downloadRes">Download Résumé</a>
           <button class="ghost" id="toggleTheme">Toggle Theme</button>
         </div>
       </div>
@@ -82,15 +83,18 @@
         <section>
           <div class="section">
             <h3>About me</h3>
-            <p id="about">Hi — I’m a Computer Engineering student and front-end web developer. I enjoy turning ideas into pixel-perfect, accessible user interfaces. I’ve learned HTML, CSS, and I am learning JavaScript. I like problem-solving, building small projects, and improving performance.</p>
+            <p id="about">
+              Hi — I’m <strong>Mohammad AbdulSattar</strong>, a 20-year-old software engineer in my third year.
+              I enjoy building performant, accessible UIs and problem-solving across the stack.
+            </p>
           </div>
 
           <div class="section">
             <h3>Skills</h3>
             <div class="skills" id="skillsList">
-              <div class="skill">HTML</div>
-              <div class="skill">CSS</div>
-              <div class="skill">JavaScript</div>
+              <div class="skill">HTML (100%)</div>
+              <div class="skill">CSS (75%)</div>
+              <div class="skill">Java (85%)</div>
               <div class="skill">Responsive Design</div>
               <div class="skill">Git</div>
             </div>
@@ -105,16 +109,16 @@
                 <div class="desc">Built a responsive portfolio to showcase projects and CV.</div>
               </div>
               <div class="item">
-                <strong>University Web App</strong>
-                <div class="when">2024 — Team project</div>
-                <div class="desc">Contributed front-end components and fixed cross-browser layout issues.</div>
+                <strong>University Projects</strong>
+                <div class="when">2024–2025 — Coursework</div>
+                <div class="desc">Frontend components and performance tweaks; focus on clean HTML/CSS and Java fundamentals.</div>
               </div>
             </div>
           </div>
 
           <div class="section">
             <h3>Education</h3>
-            <p><strong>Computer Engineering — 3rd year</strong><br/>University Name — Expected 2026</p>
+            <p><strong>Software Engineering — 3rd year</strong><br/>Graduating 2027 (in shaa’ Allah)</p>
           </div>
 
         </section>
@@ -122,20 +126,22 @@
         <aside>
           <div class="section contact">
             <h3>Contact</h3>
-            <div><a href="mailto:you@example.com">you@example.com</a></div>
-            <div style="margin-top:8px"><a href="#">LinkedIn</a> · <a href="#">GitHub</a> · <a href="#">Twitter</a></div>
+            <div><a href="mailto:your.email@domain.com">your.email@domain.com</a></div>
+            <div style="margin-top:8px">
+              <a href="https://github.com/MohamedAbdul-Sattar" target="_blank" rel="noopener">GitHub</a>
+            </div>
           </div>
 
           <div class="section">
             <h3>Skill levels</h3>
             <div style="margin-bottom:8px"><small>HTML</small>
-              <div class="meter" title="HTML - 95%"><span style="width:95%; background:linear-gradient(90deg,#10b981,#60a5fa)"></span></div>
+              <div class="meter" title="HTML - 100%"><span style="width:100%; background:linear-gradient(90deg,#10b981,#60a5fa)"></span></div>
             </div>
             <div style="margin-bottom:8px"><small>CSS</small>
-              <div class="meter" title="CSS - 90%"><span style="width:90%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
+              <div class="meter" title="CSS - 75%"><span style="width:75%; background:linear-gradient(90deg,#f59e0b,#ef4444)"></span></div>
             </div>
-            <div style="margin-bottom:8px"><small>JavaScript</small>
-              <div class="meter" title="JS - 60%"><span style="width:60%; background:linear-gradient(90deg,#60a5fa,#7c3aed)"></span></div>
+            <div style="margin-bottom:8px"><small>Java</small>
+              <div class="meter" title="Java - 85%"><span style="width:85%; background:linear-gradient(90deg,#60a5fa,#7c3aed)"></span></div>
             </div>
           </div>
 
@@ -143,20 +149,19 @@
             <h3>Quick facts</h3>
             <div class="pill">Open to internships</div>
             <div style="height:8px"></div>
-            <div class="pill">Available: From Sep 2025</div>
+            <div class="pill">Graduation: 2027</div>
           </div>
-
         </aside>
       </div>
 
       <footer>
-        <div>Want this file personalized? Click the name or email and paste your info — or tell me what to change.</div>
+        <div>Want this file personalized? Replace the email/phone and add links. </div>
       </footer>
     </div>
   </main>
 
   <script>
-    // Small script to make the résumé downloadable and toggle theme/content
+    // Download a simple text résumé from the page content
     document.getElementById('downloadRes').addEventListener('click', function(e){
       e.preventDefault();
       const name = document.getElementById('name').innerText.split('\n')[0] || 'résumé';
@@ -168,30 +173,19 @@
       document.body.appendChild(a); a.click(); URL.revokeObjectURL(url); a.remove();
     });
 
+    // Simple light/dark toggle
     document.getElementById('toggleTheme').addEventListener('click', function(){
-      // Simple theme swap: invert colors
-      if(document.documentElement.style.getPropertyValue('--bg') === ''){
-        document.documentElement.style.setProperty('--bg','#ffffff');
-      }
-      // For simplicity in this single-file example, just invert page background and text color
       const body = document.body;
-      if(body.style.backgroundColor === 'white'){
+      if(body.dataset.mode === 'light'){
+        body.dataset.mode = 'dark';
         body.style.background = 'linear-gradient(180deg,#071025 0%, #081428 50%)';
         body.style.color = '#e6eef6';
       } else {
+        body.dataset.mode = 'light';
         body.style.background = '#ffffff';
         body.style.color = '#022';
       }
     });
-
-    // Make avatar initials dynamic from name
-    function updateAvatar(){
-      const name = document.getElementById('name').innerText.trim();
-      const initials = name.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
-      document.getElementById('avatar').innerText = initials || 'YN';
-    }
-    updateAvatar();
   </script>
 </body>
 </html>
-
