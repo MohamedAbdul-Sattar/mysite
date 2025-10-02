@@ -6,7 +6,6 @@
   <meta name="color-scheme" content="dark light" />
   <title>Self Introduction — Mohammad AbdulSattar</title>
   <style>
-    /* Smoothly animatable color variables */
     @property --bg1 { syntax: '<color>'; inherits: false; initial-value: #071025; }
     @property --bg2 { syntax: '<color>'; inherits: false; initial-value: #081428; }
     @property --fg  { syntax: '<color>'; inherits: false; initial-value: #e6eef6; }
@@ -14,12 +13,10 @@
     @property --btn2 { syntax: '<color>'; inherits: false; initial-value: #6366f1; }
 
     :root{
-      /* animated theme vars */
       --bg1:#071025;
       --bg2:#081428;
       --fg:#e6eef6;
 
-      /* existing tokens */
       --bg:#0f1724; --bg-dark-red:#3b0d0d; --bg-emerald:#022c22; --bg-royal:#1a0b2e; --bg-light:#ffffff;
       --card:#0b1020; --muted:#98a0b3; --accent:#6ee7b7;
       --glass: rgba(255,255,255,0.04);
@@ -56,7 +53,6 @@
     }
     .card:hover{ transform:translateY(-2px); box-shadow:0 10px 36px rgba(2,6,23,0.7) }
 
-    /* Header */
     .header{display:grid; grid-template-columns:auto 1fr; gap:clamp(12px, 2vw, 18px); align-items:center}
     .avatar{
       width:clamp(84px,14vw,110px); height:clamp(84px,14vw,110px);
@@ -76,11 +72,9 @@
     }
     .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08) }
 
-    /* Layout */
     .grid{display:grid; grid-template-columns:1fr 320px; gap:clamp(14px,2vw,18px); margin-top:18px}
     @media (max-width:900px){ .grid{grid-template-columns:1fr} }
 
-    /* Sections */
     .section{margin-bottom:14px; animation: fadeSlideIn .5s ease both}
     .section h3{margin:0 0 8px 0; font-size:clamp(14px,2vw,16px)}
     p{margin:0 0 10px 0}
@@ -103,11 +97,9 @@
 
     footer{margin-top:18px; color:var(--muted); font-size:13px}
 
-    /* Animations & a11y */
     @keyframes fadeSlideIn{ from{opacity:0; transform: translateY(8px)} to{opacity:1; transform:none} }
     @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
 
-    /* Bottom-center theme cycler (shows NEXT theme color) */
     .theme-cycler{
       position: fixed;
       left: 50%;
@@ -142,7 +134,6 @@
       }
     }
 
-    /* Light-mode tweaks (keep these) */
     body[data-theme="light"] .card{ border-color: rgba(2,6,23,0.06) }
     body[data-theme="light"] .pill{ color:#213547 }
     body[data-theme="light"] .contact a{ color:#0d9488 }
@@ -256,7 +247,6 @@
   <button class="theme-cycler" id="themeCycler" type="button" aria-pressed="false" aria-label="Switch theme"></button>
 
   <script>
-    // Five themes with animatable colors
     const THEMES = [
       { key:'midnight',     bg1:'#071025', bg2:'#081428', fg:'#e6eef6', btn:['#0ea5e9','#6366f1'] },
       { key:'dark-red',     bg1:'#3b0d0d', bg2:'#1f0a0a', fg:'#f5e6e6', btn:['#991b1b','#ef4444'] },
@@ -287,7 +277,6 @@
       btn.setAttribute('aria-label', btn.title);
     }
 
-    // Init from saved theme or current attribute
     const saved = localStorage.getItem('theme-key') || body.getAttribute('data-theme') || 'midnight';
     applyTheme(saved);
     setButtonToNext();
