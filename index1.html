@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exoplanet Classifier</title>
   <style>
-    /* Fullscreen video */
+    /* Fullscreen video background */
     #bg-video {
       position: fixed;
       right: 0;
@@ -24,6 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .overlay {
@@ -32,6 +33,7 @@
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      max-width: 500px;
     }
 
     .overlay h1 {
@@ -73,24 +75,25 @@
 </head>
 <body>
 
-  <!-- Clean local video background -->
+  <!-- Background Video -->
   <video autoplay muted loop id="bg-video">
-    <source src="{{ url_for('static', filename='space.mp4') }}" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/MohamedAbdul-Sattar/mysite/main/space.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
+  <!-- Overlay Content -->
   <div class="overlay">
     <h1>🌍 Exoplanet Classifier</h1>
     <p>Identify exoplanets with AI & NASA data</p>
 
     <div class="buttons">
-      <!-- Add Data -->
+      <!-- Add Data Button -->
       <form action="/train" method="post" enctype="multipart/form-data">
         <input type="file" name="file" required>
         <button type="submit">Add Data to Database</button>
       </form>
 
-      <!-- Test -->
+      <!-- Test Button -->
       <form action="/test" method="post" enctype="multipart/form-data">
         <input type="file" name="file">
         <button type="submit">Test</button>
