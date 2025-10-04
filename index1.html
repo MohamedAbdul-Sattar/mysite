@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoplanet Classifier</title>
+
+  <style>
+    /* Make video cover the whole screen */
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1; /* send behind everything */
+      object-fit: cover;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* semi-transparent overlay */
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .overlay h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .overlay p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    button {
+      background: #1e90ff;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00bfff;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='earth.mp4') }}" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="overlay">
+    <h1>🌍 Exoplanet Classifier</h1>
+    <p>Identify exoplanets with AI & NASA data</p>
+
+    <div class="buttons">
+      <!-- Add Data -->
+      <form action="/train" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Add Data to Database</button>
+      </form>
+
+      <!-- Test -->
+      <form action="/test" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Test</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
 
