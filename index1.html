@@ -4,32 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exoplanet Classifier</title>
-
   <style>
-    /* Make video cover the whole screen */
+    /* Fullscreen video styling */
     #bg-video {
       position: fixed;
       right: 0;
       bottom: 0;
       min-width: 100%;
       min-height: 100%;
-      z-index: -1; /* send behind everything */
+      z-index: -1;
       object-fit: cover;
     }
 
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
-      color: white;
       height: 100vh;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .overlay {
-      background: rgba(0, 0, 0, 0.6); /* semi-transparent overlay */
+      background: rgba(0, 0, 0, 0.6);
       padding: 40px;
       border-radius: 15px;
       text-align: center;
@@ -75,9 +73,9 @@
 </head>
 <body>
 
-  <!-- Background video -->
+  <!-- 🔹 Background Video -->
   <video autoplay muted loop id="bg-video">
-    <source src="{{ url_for('static', filename='earth.mp4') }}" type="video/mp4">
+    <source src="{{ url_for('static', filename='space.mp4') }}" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
@@ -102,4 +100,3 @@
 
 </body>
 </html>
-
